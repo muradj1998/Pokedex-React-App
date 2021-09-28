@@ -1,17 +1,17 @@
-import React, { Component } from 'react';
-import './App.css';
+import React, { Component } from 'react'
+import './App.css'
 import { PokeList, DetailView, Pokemon } from './components'
 
 class App extends Component {
-  constructor () {
+  constructor() {
     super()
     this.state = {
       pokemon: {
         id: 1,
-        name: 'bulbasaur',
-        type: 'grass',
-        weight: 69,
+        name: "bulbasaur",
         height: 7,
+        weight: 69,
+        type: "grass",
         sprite: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png"
       }
     }
@@ -21,23 +21,22 @@ class App extends Component {
 
   handleOnClick(id) {
     fetch(`https://pokeapi.co/api/v2/pokemon/${id}/`)
-    .then(response => response.json())
-    .then(data => {
-      const pokemon = new Pokemon(data)
-      this.setState({ pokemon })
-    })
-    .catch(err => console.log(err))
+      .then(res => res.json())
+      .then(data => {
+        const pokemon = new Pokemon(data);
+        this.setState({ pokemon });
+      })
+      .catch(err => console.log(err));
   }
-  
-  render () {
+
+  render() {
     return (
       <div className="App">
-     <PokeList handleOnClick={this.handleOnClick} />
-     <DetailView pokemon={this.state.pokemon}/>
+        <PokeList handleOnClick={this.handleOnClick} />
+        <DetailView pokemon={this.state.pokemon}/>
       </div>
-    )
+    );
   }
 }
 
 export default App;
- 
